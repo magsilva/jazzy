@@ -59,7 +59,7 @@ public class JazzyPlugin
      * Any option panes created by the plugin should be added here.
      * 
      * @param optionsDialog The plugin options dialog box
-     * @see OptionPane
+     * @see JazzyOptionPane
      * @see OptionsDialog#addOptionPane(OptionPane)
      */
     public void createOptionPanes(OptionsDialog optionsDialog) {
