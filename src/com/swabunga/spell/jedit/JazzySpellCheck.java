@@ -185,7 +185,8 @@ public class JazzySpellCheck
 
                 if (jEdit.getBooleanProperty("options.jazzy.disk-based", false)) {
                     dictionary = new SpellDictionaryDisk(dictionaryFile.getParentFile(), 
-                                                         true);
+                    									null,
+                                                        true);
                     Log.log(Log.MESSAGE, this, 
                             "Disk-based SpellChecker Loaded.");
                 } else {
