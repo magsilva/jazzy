@@ -135,6 +135,8 @@ public class JazzySpellCheck implements SpellCheckListener {
       wf = new DefaultWordFinder(input);
     }
 
+    Log.log(Log.MESSAGE, this, "WordFinder Type: " + wf.getClass().toString());
+    
     StringWordTokenizer toks = new StringWordTokenizer(wf);
     spellChecker.checkSpelling(toks);
 
