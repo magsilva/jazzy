@@ -76,6 +76,10 @@ public class JazzyPlugin
     public static void showJazzyDialog(View view) {
         JEditTextArea jta                          = view.getTextArea();
 
+        if (jazzyChecker == null){
+          jazzyChecker = newSpellChecker();
+        }
+        
         if (!jazzyChecker.isLoaded()) {
 
             if (!jazzyChecker.loadDictionary()) {
@@ -107,23 +111,9 @@ public class JazzyPlugin
      * Method called by jEdit to initialize the plugin.
      */
     public void start() {
-        System.setProperty("jazzy.config", 
-                           "com.swabunga.spell.engine.JeditConfiguration");
         LOAD_DICTIONARY    = jEdit.getBooleanProperty(
                                      "options.jazzy.load-dictionary", false);
-        RESET_SPELLCHECKER = jEdit.getBooleanProperty(
-                                     "options.jazzy.reset-spellchecker", false);
-        int flags          = 0;
-
-        if (LOAD_DICTIONARY) {
-            flags += JazzySpellCheck.LOAD_DICTIONARY;
-        }
-
-        if (RESET_SPELLCHECKER) {
-            flags += JazzySpellCheck.RESET_SPELLCHECKER;
-        }
-
-        jazzyChecker = new JazzySpellCheck(flags);
+        if (LOAD_DICTIONARY) {jazzyChecker = newSpellChecker();}
     }
 
     public static void unloadDictionary() {
@@ -132,5 +122,25 @@ public class JazzyPlugin
     
     public static void resetSpellChecker() {
         jazzyChecker.resetSpellChecker();
+    }
+    
+    public static JazzySpellCheck newSpellChecker(){
+        System.setProperty("jazzy.config", 
+                           "com.swabunga.spell.engine.JeditConfiguration");
+
+        RESET_SPELLCHECKER = jEdit.getBooleanProperty(
+                                     "options.jazzy.reset-spellchecker", false);
+        int flags          = 0;
+
+//        if (LOAD_DICTIONARY) {
+            flags += JazzySpellCheck.LOAD_DICTIONARY;
+//        }
+
+        if (RESET_SPELLCHECKER) {
+            flags += JazzySpellCheck.RESET_SPELLCHECKER;
+        }
+
+        return new JazzySpellCheck(flags);
+
     }
 }
