@@ -23,6 +23,7 @@ package com.swabunga.spell.jedit;
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryDisk;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
+import com.swabunga.spell.engine.Configuration;
 import com.swabunga.spell.event.SpellCheckListener;
 import com.swabunga.spell.event.SpellChecker;
 import com.swabunga.spell.event.SpellCheckEvent;
@@ -62,6 +63,7 @@ public class JazzySpellCheck
     private boolean noerrors                   = true;
     private int offset;
     private SpellChecker spellChecker;
+    private Configuration config = Configuration.getConfiguration();
 
     //~ Constructors ..........................................................
 
@@ -85,6 +87,12 @@ public class JazzySpellCheck
               t.start();
         }
 
+        
+        config.setBoolean(Configuration.SPELL_IGNOREDIGITWORDS, 
+                          jEdit.getBooleanProperty("options.jazzy.SPELL_IGNOREDIGITWORDS", false));
+
+        Log.log(Log.MESSAGE,this,"Ignore Digits? "+config.getBoolean(Configuration.SPELL_IGNOREDIGITWORDS));
+                          
         setupDialog();
     }
 
