@@ -25,6 +25,8 @@
 #
 # See end of file for description (in Swedish)
 
+alphabet=[ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ]
+
 version 0.2
 
 &	&
