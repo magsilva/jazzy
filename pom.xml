@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.swabunga.spell</groupId>
+	<artifactId>spell</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<name>Jazzy</name>
+	<description>Spell checker</description>
+	<url>http://sourceforge.net/projects/jazzy/</url>
+	<inceptionYear>2007</inceptionYear>
+
+	
+	<distributionManagement>
+		<repository>
+			<id>labes-pc-010808-releases</id>
+			<name>labes-pc-010808-releases</name>
+			<url>http://www.ironiacorp.com/Apps/Artifactory/libs-releases-local</url>
+		</repository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>labes-pc-010808-releases</id>
+			<url>http://www.ironiacorp.com/Apps/Artifactory/repo</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>[4.0,)</version>
+		</dependency>
+
+
+	</dependencies>
+
+	<build>
+		<finalName>${artifactId}-${version}</finalName>
+
+		<directory>target</directory>
+
+		<sourceDirectory>src</sourceDirectory>
+		<testSourceDirectory>test</testSourceDirectory>
+
+		<outputDirectory>target/classes</outputDirectory>
+		<testOutputDirectory>target/test-classes</testOutputDirectory>
+
+		<resources>
+			<resource>
+				<directory>${project.basedir}/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<testResources>
+			<testResource>
+				<directory>${project.basedir}/test-resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>
+					<meminitial>128m</meminitial>
+					<maxmem>512m</maxmem>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>bin/</directory>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<outputDirectory>site</outputDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.sonar-plugins</groupId>
+				<artifactId>maven-report</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
+	
+	<properties>
+		<sonar.host.url>http://www.ironiacorp.com/Apps/Sonar/</sonar.host.url>
+	</properties>
+</project>

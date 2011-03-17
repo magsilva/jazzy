@@ -18,6 +18,7 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 /* Created by bgalbs on Jan 30, 2003 at 11:45:25 PM */
+
 package com.swabunga.spell.engine;
 
 import java.io.File;
@@ -36,7 +37,7 @@ import java.util.*;
  * <a href="http://wordlist.sourceforge.net/">
  * http://wordlist.sourceforge.net/</a>
  * <p/>
- * You can choose words lists form <a href="http://aspell.net/">aspell</a> 
+ * You can choose words lists from <a href="http://aspell.net/">aspell</a> 
  * many differents languages dictionaries. To grab some, install 
  * <code>aspell</code> and the dictionaries you require. Then run aspell 
  * specifying the name of the dictionary and the words list file to dump it 
