@@ -77,6 +77,15 @@ public class Word implements Comparator {
   }
   
   /**
+   * Overridden since {@link #equals(Object)} is overridden.
+   *
+   * @return The hash code for this word.
+   */
+  public int hashCode() {
+    return word.hashCode();
+  }
+  
+  /**
    * gets suggested spelling
    * @return the actual text of the suggest spelling
    */

@@ -151,7 +151,7 @@ public abstract class SpellDictionaryASpell implements SpellDictionary {
     nearmisscodes.put(code, code);
     Vector phoneticList = getWordsFromCode(word, nearmisscodes);
 
-    // do some tranformations to pick up more results
+    // do some transformations to pick up more results
     //interchange
     nearmisscodes = new Hashtable();
     char[] charArray = word.toCharArray();
@@ -229,8 +229,8 @@ public abstract class SpellDictionaryASpell implements SpellDictionary {
 
 
     // We sort a Vector at the end instead of maintaining a
-    // continously sorted TreeSet because everytime you add a collection
-    // to a treeset it has to be resorted. It's better to do this operation
+    // continuously sorted TreeSet because every time you add a collection
+    // to a TreeSet it has to be resorted. It's better to do this operation
     // once at the end.
 
     Collections.sort(phoneticList, new Word()); //always sort phonetic matches along the top
@@ -240,19 +240,7 @@ public abstract class SpellDictionaryASpell implements SpellDictionary {
     return phoneticList;
   }
 
-  /**
-   * When we don't come up with any suggestions (probably because the threshold was too strict),
-   * then pick the best guesses from the those words that have the same phonetic code.
-   * <p>
-   * This method is only needed to provide backward compatibility.
-   * @see addBestGuess(String word, Vector wordList, int[][] matrix)
-   * @param word - the word we are trying spell correct
-   * @param wordList - the linked list that will get the best guess
-   */
-  private void addBestGuess(String word, Vector wordList) {
-  	addBestGuess(word,wordList,null);
-  }
-  
+ 
   /**
    * When we don't come up with any suggestions (probably because the threshold was too strict),
    * then pick the best guesses from the those words that have the same phonetic code.
@@ -339,7 +327,7 @@ public abstract class SpellDictionaryASpell implements SpellDictionary {
     List possible = getWords(getCode(word));
     if (possible.contains(word))
       return true;
-    //JMH should we always try the lowercase version. If I dont then capitalised
+    //JMH should we always try the lowercase version. If I don't then capitalized
     //words are always returned as incorrect.
     else if (possible.contains(word.toLowerCase()))
       return true;

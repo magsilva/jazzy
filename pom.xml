@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.swabunga.spell</groupId>
-	<artifactId>spell</artifactId>
-	<version>1.0.0</version>
+	<artifactId>jazzy</artifactId>
+	<version>0.5.3</version>
 	<packaging>jar</packaging>
 
 	<name>Jazzy</name>
-	<description>Spell checker</description>
+	<description>Java Spell Checker API</description>
 	<url>http://sourceforge.net/projects/jazzy/</url>
 	<inceptionYear>2007</inceptionYear>
 
@@ -22,25 +22,16 @@
 		</repository>
 	</distributionManagement>
 
-	<repositories>
-		<repository>
-			<id>labes-pc-010808-releases</id>
-			<url>http://www.ironiacorp.com/Apps/Artifactory/repo</url>
-		</repository>
-	</repositories>
-
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>[4.0,)</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>
-		<finalName>${artifactId}-${version}</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 
 		<directory>target</directory>
 
@@ -88,18 +79,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<reporting>
-		<outputDirectory>site</outputDirectory>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.sonar-plugins</groupId>
-				<artifactId>maven-report</artifactId>
-			</plugin>
-		</plugins>
-	</reporting>
-	
-	<properties>
-		<sonar.host.url>http://www.ironiacorp.com/Apps/Sonar/</sonar.host.url>
-	</properties>
 </project>

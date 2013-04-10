@@ -179,10 +179,10 @@ public class SpellDictionaryHashMap extends SpellDictionaryASpell {
    * Add a word permanently to the dictionary (and the dictionary file).
    * <p>This needs to be made thread safe (synchronized)</p>
    */
-  public void addWord(String word) {
+  public boolean addWord(String word) {
     putWord(word);
     if (dictFile == null)
-      return;
+      return false;
     try {
       FileWriter w = new FileWriter(dictFile.toString(), true);
       // Open with append.
@@ -192,6 +192,8 @@ public class SpellDictionaryHashMap extends SpellDictionaryASpell {
     } catch (IOException ex) {
       System.out.println("Error writing to dictionary file");
     }
+    
+    return true;
   }
 
   /**
@@ -203,12 +205,10 @@ public class SpellDictionaryHashMap extends SpellDictionaryASpell {
    * load the data in. I suspect that we could speed this up quite allot.
    */
   protected void createDictionary(BufferedReader in) throws IOException {
-    String line = "";
-    while (line != null) {
-      line = in.readLine();
-      if (line != null && line.length() > 0) {
-        line = new String(line.toCharArray());
-        putWord(line);
+     String line;
+     while ((line=in.readLine())!=null) {
+       if (line.length() > 0) {
+         putWord(line);
       }
     }
   }
@@ -227,15 +227,13 @@ public class SpellDictionaryHashMap extends SpellDictionaryASpell {
    * to subclass for the cases where duplicates are bad.
    */
   protected void addDictionaryHelper(BufferedReader in) throws IOException {
-
-    String line = "";
-    while (line != null) {
-      line = in.readLine();
-      if (line != null && line.length() > 0) {
-        line = new String(line.toCharArray());
-        putWordUnique(line);
-      }
-    }
+	  // robert: Optimized ever-so-slightly
+	  String line;
+	  while ((line=in.readLine())!=null) {
+	    if (line.length() > 0) {
+	    	putWordUnique(line);
+	    }
+	  }
   }
 
   /**

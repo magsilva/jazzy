@@ -96,12 +96,19 @@ public class PropertyConfiguration extends Configuration {
    * PropertyConfiguration file.
    */
   public void save() {
+	  FileOutputStream fout = null;
     try {
       File file = new File(filename.getFile());
-      FileOutputStream fout = new FileOutputStream(file);
+      fout = new FileOutputStream(file);
       prop.store(fout, "HEADER");
     } catch (FileNotFoundException e) {
     } catch (IOException e) {
+    } finally {
+    	if (fout != null) {
+    		try {
+    			fout.close();
+    		} catch (IOException e) {}
+    	}
     }
   }
 

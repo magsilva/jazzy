@@ -104,10 +104,10 @@ public class GenericSpellDictionary extends SpellDictionaryASpell {
    * <p>This needs to be made thread safe (synchronized)</p>
    * @param word The word to add to the dictionary
    */
-  public void addWord(String word) {
+  public boolean addWord(String word) {
     putWord(word);
     if (dictFile == null)
-      return;
+      return false;
     try {
       FileWriter w = new FileWriter(dictFile.toString(), true);
       // Open with append.
@@ -116,7 +116,10 @@ public class GenericSpellDictionary extends SpellDictionaryASpell {
       w.close();
     } catch (IOException ex) {
       System.out.println("Error writing to dictionary file");
+      return false;
     }
+    
+    return true;
   }
 
   /**
