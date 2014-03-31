@@ -16,9 +16,8 @@
 	
 	<distributionManagement>
 		<repository>
-			<id>labes-pc-010808-releases</id>
-			<name>labes-pc-010808-releases</name>
-			<url>http://www.ironiacorp.com/Apps/Artifactory/libs-releases-local</url>
+			<id>IroniaCorp</id>
+			<url>dav:http://www.ironiacorp.com/repo/maven2</url>
 		</repository>
 	</distributionManagement>
 
@@ -54,6 +53,21 @@
 				<filtering>true</filtering>
 			</testResource>
 		</testResources>
+
+                <extensions>
+                        <extension>
+                                <groupId>org.apache.maven.wagon</groupId>
+                                <artifactId>wagon-webdav-jackrabbit</artifactId>
+                                <version>2.4</version>
+                        </extension>
+
+                        <extension>
+                                <groupId>org.slf4j</groupId>
+                                <artifactId>slf4j-nop</artifactId>
+                                <version>1.6.6</version>
+                        </extension>
+                </extensions>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -64,17 +78,6 @@
 					<maxmem>512m</maxmem>
 					<source>1.5</source>
 					<target>1.5</target>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<artifactId>maven-clean-plugin</artifactId>
-				<configuration>
-					<filesets>
-						<fileset>
-							<directory>bin/</directory>
-						</fileset>
-					</filesets>
 				</configuration>
 			</plugin>
 		</plugins>
